@@ -11,7 +11,7 @@ The completion3d benchmark is available at [https://completion3d.stanford.edu](h
 
 ## Overview
 
-![Overview](imgs/compare_soa_2018_4.jpg)
+![Overview](imgs/compare_soa_2048_4.jpg)
 *Point Cloud Completion Results. A partial point cloud is given as input and various methods used to generate a completed point cloud*
 
 The completion3D benchmark is a platform for evaluating state-of-the-art 3D Object Point Cloud Completion methods. This repository contains source code for various methods evaluated on the benchmark. Both Tensorflow and Pytorch are supported.
