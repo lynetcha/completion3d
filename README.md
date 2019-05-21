@@ -1,7 +1,7 @@
 # Completion3D: Stanford 3D Object Point Cloud Completion Benchmark
 # TopNet: Structural Point Cloud Decoder
 
-This repository contains source code for all methods used for the [Stanford 3D Object Point Cloud Completion Benchmark](https://www.completion3d.stanford.edu) and presented in the paper [Tchapmi et al., TopNet: Structural Point Cloud Decoder, CVPR 2019](http://arxiv.org/abs/).
+This repository contains source code for all methods used for the [Stanford 3D Object Point Cloud Completion Benchmark](https://www.completion3d.stanford.edu) and presented in the paper [TopNet: Structural Point Cloud Decoder, CVPR 2019](http://arxiv.org/abs/).
 
 
 ## Project Pages
