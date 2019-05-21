@@ -1,20 +1,19 @@
-# Completion3D: Stanford 3D Object Point Cloud Completion Benchmark
-# TopNet: Structural Point Cloud Decoder
+## Completion3D: Stanford 3D Object Point Cloud Completion Benchmark & 
+## TopNet: Structural Point Cloud Decoder
 
 This repository contains source code for all methods used for the [Stanford 3D Object Point Cloud Completion Benchmark](https://www.completion3d.stanford.edu) and presented in the paper [TopNet: Structural Point Cloud Decoder, CVPR 2019](http://arxiv.org/abs/).
 
 
 ## Project Pages
 
-The TopNet project page is available at [https://topnet.stanford.edu/](https://topnet.stanford.edu/).
+The TopNet project page is available at [https://completion3d.stanford.edu/topnet](https://completion3d.stanford.edu/topnet).
 The completion3d benchmark is available at [https://completion3d.stanford.edu](https://completion3d.stanford.edu/).
 
 ## Overview
 
+The completion3D benchmark is a platform for evaluating state-of-the-art 3D Object Point Cloud Completion methods. This repository contains source code for various methods evaluated on the benchmark. Both **Tensorflow** and **Pytorch** are supported.
 ![Overview](imgs/compare_soa_2048_4.jpg)
-*Point Cloud Completion Results. A partial point cloud is given as input and various methods used to generate a completed point cloud*
-
-The completion3D benchmark is a platform for evaluating state-of-the-art 3D Object Point Cloud Completion methods. This repository contains source code for various methods evaluated on the benchmark. Both Tensorflow and Pytorch are supported.
+**Point Cloud Completion Results**: *A partial point cloud is given as input and various methods used to generate a completed point cloud*
 
 
 ## Citing this work
@@ -48,9 +47,9 @@ If you find this work useful in your research, please consider citing:
   biburl    = {https://dblp.org/rec/bib/journals/corr/ChangFGHHLSSSSX15},
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
+```
 And please refer to the [Shapenet Terms of Use](https://www.shapenet.org/terms)
 
-```
 
 ## License
 
