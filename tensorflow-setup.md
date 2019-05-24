@@ -1,6 +1,8 @@
 Below are instructions on how to setup completion3d training in tensorflow.
-New networks can be added following the template in tensorflow/models/TopNet.py.
-Feel free to submit new model additions to the benchmark as a pull request.
+New networks can be added following the template in tensorflow/models/TopNet.py 
+and adding corresponding import statements in tensorflow/main.py and 
+tensorflow/utils/train_utils.py Feel free to submit new model additions to the 
+benchmark as a pull request.
 
 ## Clone Repository
 

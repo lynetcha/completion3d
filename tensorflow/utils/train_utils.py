@@ -11,6 +11,7 @@ from multiprocessing import Queue
 from data_process import kill_data_processes
 from shapenet import ShapenetDataProcess
 from PCN import *
+from Folding import *
 
 def check_overwrite(fname):
     if os.path.isfile(fname):

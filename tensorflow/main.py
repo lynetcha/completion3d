@@ -8,6 +8,7 @@ import json
 import math
 from parse_args import parse_args
 from PCN import *
+from Folding import *
 from train_utils import train, test, metrics, samples, set_seed, \
     tf_resume, cache_pred, model_at, parse_experiment, set_optim, \
     check_overwrite, data_setup, get_available_gpus, benchmark_results
