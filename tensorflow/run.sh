@@ -5,21 +5,23 @@ DATASET='shapenet'
 NPTS=$((2048))
 
 # Model Parameters
-NET='PCN' #TopNet/Folding
+NET='TopNet' #TopNet/Folding
 ENCODER_ID=1 #0 for PointNet, 1 for PCN Encoder
 CODE_NFTS=1024
 DIST_FUN='chamfer' #emd
+NLEVELS=6
+NFEAT=8
 
 
 # Training Parameters
-TRAIN=0
+TRAIN=1
 EVAL=$((1-$TRAIN))
 RESUME=0
 BENCHMARK=0
 OPTIM='adagrad'
-LR=1e-2
-EPOCHS=2
-SAVE_EPOCH=1
+LR=0.5e-2
+EPOCHS=300
+SAVE_EPOCH=5
 TEST_EPOCH=$SAVE_EPOCH
 BATCH_SIZE=32
 NWORKERS=4
@@ -36,4 +38,4 @@ python -u $PROGRAM --epochs $EPOCHS --lr $LR --batch_size $BATCH_SIZE \
     --eval $EVAL --optim $OPTIM --code_nfts $CODE_NFTS \
     --resume $RESUME --npts $NPTS --ENCODER_ID $ENCODER_ID --dist_fun $DIST_FUN \
     --save_nth_epoch $SAVE_EPOCH --test_nth_epoch $TEST_EPOCH \
-    --benchmark $BENCHMARK
+    --benchmark $BENCHMARK --NLEVELS $NLEVELS --NFEAT $NFEAT

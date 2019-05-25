@@ -25,7 +25,9 @@ def parse_args():
     # Model
     parser.add_argument('--NET', default='TopNet', help='Network used')
     parser.add_argument('--code_nfts', default=1024, type=int, help='Encoder output feature size')
-    parser.add_argument('--ENCODER_ID', default=1, type=int, help='If 0, use PointNet encoder, if 1 use PCN encoder')
+    parser.add_argument('--ENCODER_ID', default=1, type=int, help='TopNet only - If 0, use PointNet encoder, if 1 use PCN encoder')
+    parser.add_argument('--NLEVELS', default=6, type=int, help="Number of tree levels in TopNet")
+    parser.add_argument('--NFEAT', default=8, type=int, help="Node feature dimension in TopNet")
 
     # Dataset
     parser.add_argument('--dataset', default='shapenet', help='Dataset name: shapenet')

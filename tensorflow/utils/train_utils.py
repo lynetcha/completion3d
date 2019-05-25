@@ -12,6 +12,7 @@ from data_process import kill_data_processes
 from shapenet import ShapenetDataProcess
 from PCN import *
 from Folding import *
+from TopNet import *
 
 def check_overwrite(fname):
     if os.path.isfile(fname):
