@@ -44,6 +44,12 @@ cd ../../../
 cd tensorflow
 ```
 
+Link data (see data-setup.md)
+
+```
+ln -s /path/to/data data
+```
+
 Modify parameters in *run.sh*
 
 ```

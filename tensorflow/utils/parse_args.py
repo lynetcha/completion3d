@@ -39,11 +39,9 @@ def parse_args():
     parser.add_argument('--inpts', default=2048, type=int, help='Number of input points')
     parser.add_argument('--ngtpts', default=2048, type=int, help='Number of ground-truth points')
 
-
     args = parser.parse_args()
     args.start_epoch = 0
     if args.dataset == 'shapenet16384':
         args.ngtpts = 16384
 
     return args
-

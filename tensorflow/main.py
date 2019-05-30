@@ -40,7 +40,6 @@ def setup(args):
 def main():
     args = parse_args()
     args.num_gpus = len(get_available_gpus())
-    args.scheduler = None
     eval(args.NET + '_setup')(args)
     set_seed(args.seed)
     setup(args)
@@ -77,7 +76,6 @@ def main():
     if args.eval == 0:
         for epoch in range(args.start_epoch, args.epochs):
             print('Epoch {}/{} ({}):'.format(epoch + 1, args.epochs, args.odir))
-            if args.scheduler: args.scheduler.step()
 
             loss = train(args, epoch, train_data_queue, train_data_processes)[0]
 

@@ -58,6 +58,20 @@ def tf_resume(args, i):
         stats = []
     return model, stats
 
+def set_optim(args):
+    lr = tf.constant(args.lr, name='lr')
+    if args.optim=='sgd':
+        optimizer = tf.train.MomentumOptimizer(lr, args.momentum)
+    elif args.optim=='adam':
+        optimizer = tf.train.AdamOptimizer(lr)
+    elif args.optim=='adagrad':
+        optimizer = tf.train.AdagradOptimizer(lr, initial_accumulator_value=1e-13)
+    elif args.optim=='adadelta':
+        optimizer = tf.train.AdadeltaOptimizer(lr, rho=0.9, epsilon=1e-6)
+    elif args.optim=='rmsprop':
+        optimizer = tf.train.RMSPropOptimizer(alr, decay=0.99, epsilon=1e-8)
+    return optimizer
+
 def set_seed(seed):
     """ Sets seeds"""
     random.seed(seed)
@@ -291,19 +305,13 @@ def cache_pred(predictions, db_name, args):
                     hf1.create_dataset(name=fname, data=o_cpu[1])
                     hf2.create_dataset(name=fname, data=o_cpu[2])
 
-def set_optim(args):
-    lr = tf.constant(args.lr, name='lr')
-    if args.optim=='sgd':
-        optimizer = tf.train.MomentumOptimizer(lr, args.momentum)
-    elif args.optim=='adam':
-        optimizer = tf.train.AdamOptimizer(lr)
-    elif args.optim=='adagrad':
-        optimizer = tf.train.AdagradOptimizer(lr, initial_accumulator_value=1e-13)
-    elif args.optim=='adadelta':
-        optimizer = tf.train.AdadeltaOptimizer(lr, rho=0.9, epsilon=1e-6)
-    elif args.optim=='rmsprop':
-        optimizer = tf.train.RMSPropOptimizer(alr, decay=0.99, epsilon=1e-8)
-    return optimizer
+def get_available_gpus():
+    """
+        Returns a list of the identifiers of all visible GPUs.
+    """
+    from tensorflow.python.client import device_lib
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos if x.device_type == 'GPU']
 
 class AverageValueMeter():
     def __init__(self):
@@ -318,10 +326,3 @@ class AverageValueMeter():
         return self.avg, self.N
 
 
-def get_available_gpus():
-    """
-        Returns a list of the identifiers of all visible GPUs.
-    """
-    from tensorflow.python.client import device_lib
-    local_device_protos = device_lib.list_local_devices()
-    return [x.name for x in local_device_protos if x.device_type == 'GPU']

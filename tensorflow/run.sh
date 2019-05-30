@@ -2,7 +2,7 @@
 
 # Data Parameters
 DATASET='shapenet'
-NPTS=$((2048))
+NPTS=$((1*(2048)))
 
 # Model Parameters
 NET='TopNet' #TopNet/Folding
@@ -25,6 +25,7 @@ SAVE_EPOCH=5
 TEST_EPOCH=$SAVE_EPOCH
 BATCH_SIZE=32
 NWORKERS=4
+
 # Data Augmentation
 SCALE=0
 ROT=1
