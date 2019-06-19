@@ -7,7 +7,7 @@ This repository contains source code for all methods used for the [Stanford 3D O
 ## Project Pages
 
 The TopNet project page is available at [https://completion3D.stanford.edu/topnet](https://completion3D.stanford.edu/topnet).
-The completion3D benchmark is available at [https://completion3D.stanford.edu](https://completion3D.stanford.edu/).
+The completion3D benchmark is available at [http://completion3D.stanford.edu](https://completion3D.stanford.edu/).
 
 ## Overview
 
