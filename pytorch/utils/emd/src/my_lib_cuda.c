@@ -13,9 +13,9 @@ int emd_forward_cuda(THCudaTensor *xyz1, THCudaTensor *xyz2,
 
     //approxmatchLauncher(int b,int n,int m,const float * xyz1,const float * xyz2,
     //float * match, float * temp);
-    success = approxmatchLauncher(xyz1->size[0],
-	xyz1->size[1],
-	xyz2->size[1],
+    success = approxmatchLauncher(THCudaTensor_size(state, xyz1, 0),
+	THCudaTensor_size(state, xyz1, 1),
+	THCudaTensor_size(state, xyz2, 1),
 	THCudaTensor_data(state, xyz1),
 	THCudaTensor_data(state, xyz2),
 	THCudaTensor_data(state, match),
@@ -27,9 +27,9 @@ int emd_forward_cuda(THCudaTensor *xyz1, THCudaTensor *xyz2,
     }
 
     success = 0;
-    success = matchcostLauncher(xyz1->size[0],
-	xyz1->size[1],
-	xyz2->size[1],
+    success = matchcostLauncher(THCudaTensor_size(state, xyz1, 0),
+	THCudaTensor_size(state, xyz1, 1),
+	THCudaTensor_size(state, xyz2, 1),
 	THCudaTensor_data(state, xyz1),
 	THCudaTensor_data(state, xyz2),
 	THCudaTensor_data(state, match),
@@ -47,9 +47,9 @@ int emd_backward_cuda(THCudaTensor *xyz1, THCudaTensor *xyz2, THCudaTensor *grad
         THCudaTensor *gradxyz2, THCudaTensor *match) {
 
     int success = 0;
-    success = matchcostgradLauncher(xyz1->size[0],
-	xyz1->size[1],
-	xyz2->size[1],
+    success = matchcostgradLauncher(THCudaTensor_size(state, xyz1, 0),
+	THCudaTensor_size(state, xyz1, 1),
+	THCudaTensor_size(state, xyz2, 1),
 	THCudaTensor_data(state, xyz1),
 	THCudaTensor_data(state, xyz2),
 	THCudaTensor_data(state, match),

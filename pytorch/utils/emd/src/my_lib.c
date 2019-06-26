@@ -1,4 +1,5 @@
-#include <TH/TH.h>
+#include <THC/THC.h>
+extern THCState *state;
 
 
 void nnsearch(int b,int n,int m,const float * xyz1,const float * xyz2,float * dist,int * idx){
@@ -27,9 +28,10 @@ void nnsearch(int b,int n,int m,const float * xyz1,const float * xyz2,float * di
 
 int emd_forward(THFloatTensor *xyz1, THFloatTensor *xyz2,
         THFloatTensor *match, THFloatTensor *cost) {
-    int batchsize = xyz1->size[0];
-    int n = xyz1->size[1];
-    int m = xyz2->size[1];
+    int batchsize = THCudaTensor_size(state,xyz1,0);
+    int n = THCudaTensor_size(state,xyz1,1);
+    int m = THCudaTensor_size(state,xyz2,1);
+
 
     //printf("in c: %d %d %d\n", batchsize, n, m);
 
@@ -49,9 +51,9 @@ int emd_backward(THFloatTensor *xyz1, THFloatTensor *xyz2,
         THFloatTensor *gradxyz1, THFloatTensor *gradxyz2,
         THFloatTensor * match) {
 
-    int b = xyz1->size[0];
-    int n = xyz1->size[1];
-    int m = xyz2->size[1];
+    int b = THCudaTensor_size(state,xyz1,0);
+    int n = THCudaTensor_size(state,xyz1,1);
+    int m = THCudaTensor_size(state,xyz2,1);
 
     //printf("%d %d %d\n", batchsize, n, m);
 

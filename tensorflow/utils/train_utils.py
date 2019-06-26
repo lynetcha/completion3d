@@ -53,10 +53,7 @@ def tf_resume(args, i):
     model = eval(args.NET + '_create_model')(args)
     args.saver.restore(args.sess, args.resume)
     args.start_epoch = i
-    try:
-        stats = json.loads(open(os.path.join(os.path.dirname(args.resume), 'trainlog.txt')).read())
-    except:
-        stats = []
+    stats = json.loads(open(os.path.join(args.odir, 'trainlog.txt')).read())
     return model, stats
 
 def set_optim(args):

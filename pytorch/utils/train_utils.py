@@ -72,10 +72,7 @@ def resume(args, i):
 
     if 'optimizer' in checkpoint: optimizer.load_state_dict(checkpoint['optimizer'])
     for group in optimizer.param_groups: group['initial_lr'] = args.lr
-    try:
-        stats = json.loads(open(os.path.join(os.path.dirname(args.resume), 'trainlog.txt')).read())
-    except:
-        stats = []
+    stats = json.loads(open(os.path.join(args.odir, 'trainlog.txt')).read())
     return model, optimizer, stats
 
 def create_optimizer(args, model):
