@@ -16,6 +16,7 @@ from data_process import kill_data_processes
 from shapenet import ShapenetDataProcess
 from AtlasNet import *
 from PointNetFCAE import *
+import subprocess
 
 def check_overwrite(fname):
     if os.path.isfile(fname):
@@ -221,6 +222,10 @@ def benchmark_results(split, args):
                 f.create_dataset("data", data=outp)
 
     kill_data_processes(data_queue, data_processes)
+    cur_dir = os.getcwd()
+    subprocess.call("cd %s; zip -r submission.zip *; cd %s" % (args.odir + '/benchmark', cur_dir),
+                     shell=True)
+    print("Submission file has been saved to %s/submission.zip" % (args.odir + '/benchmark'))
 
 def samples(split, args, N):
     print("Sampling ...")

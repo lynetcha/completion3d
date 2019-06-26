@@ -3,6 +3,7 @@ from torch.autograd import Variable
 import torch.nn as nn
 from common import PointNetfeat
 from dist_chamfer import chamferDist as chamfer
+import numpy as np
 
 def PointNetFCAE_setup(args):
     args.odir = 'results/%s/PointNetFCAE_%s' % (args.dataset, args.dist_fun)
@@ -31,8 +32,12 @@ def PointNetFCAE_step(args, targets_in, clouds_data):
     targets = targets.transpose(2, 1).contiguous()
     N = targets.size()[1]
     dist1, dist2 = eval(args.dist_fun)()(outputs, targets)
-    emd_cost = args.emd_mod(outputs[:, 0:N,:], targets)/N
-    emd_cost = emd_cost.data.cpu().numpy()
+    # EMD not working in pytorch (see pytorch-setup.md)
+    #emd_cost = args.emd_mod(outputs[:, 0:N,:], targets)/N
+    #emd_cost = emd_cost.data.cpu().numpy()
+    emd_cost = 0#args.emd_mod(outputs[:, 0:N, :], targets)/N
+    emd_cost = np.array([0]*args.batch_size)#emd_cost.data.cpu().numpy()
+
     loss = torch.mean(dist1) + torch.mean(dist2)
     dist1 = dist1.data.cpu().numpy()
     dist2 = dist2.data.cpu().numpy()

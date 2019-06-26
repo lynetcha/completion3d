@@ -37,7 +37,10 @@ class ShapenetDataProcess(DataProcess):
 
     def get_pair(self, args, fname, train):
         partial = load_h5(fname)
-        gtpts = load_h5(fname.replace('partial', 'gt'))
+        if self.split == 'test':
+            gtpts = partial
+        else:
+            gtpts = load_h5(fname.replace('partial', 'gt'))
         if train:
             gtpts, partial = augment_cloud([gtpts, partial], args)
         partial  = pad_cloudN(partial, args.inpts)

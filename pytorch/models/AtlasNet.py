@@ -14,7 +14,8 @@ def AtlasNet_setup(args):
     n = ((grain + 1)*(grain + 1)*args.nb_primitives)
     if n < args.npts:
         grain += 1
-    args.odir += '_npts%d' %  ((grain + 1)*(grain + 1)*args.nb_primitives)
+    args.npts = (grain + 1)*(grain + 1)*args.nb_primitives
+    args.odir += '_npts%d' %  (args.npts)
     args.odir += '_NBP%d' % (args.nb_primitives)
     args.odir += '_lr%.4f' % (args.lr)
     args.odir += '_' + args.optim
@@ -51,8 +52,12 @@ def AtlasNet_step(args, targets_in, clouds_data):
     targets = targets.transpose(2, 1).contiguous()
     N = targets.size()[1]
     dist1, dist2 = eval(args.dist_fun)()(outputs, targets)
-    emd_cost = args.emd_mod(outputs[:, 0:N, :], targets)/N
-    emd_cost = emd_cost.data.cpu().numpy()
+    # EMD not working in pytorch (see pytorch-setup.md)
+    #emd_cost = args.emd_mod(outputs[:, 0:N,:], targets)/N
+    #emd_cost = emd_cost.data.cpu().numpy()
+    emd_cost = 0#args.emd_mod(outputs[:, 0:N, :], targets)/N
+    emd_cost = np.array([0]*args.batch_size)#emd_cost.data.cpu().numpy()
+
     loss = torch.mean(dist2) + torch.mean(dist1)
     dist1 = dist1.data.cpu().numpy()
     dist2 = dist2.data.cpu().numpy()
