@@ -220,9 +220,11 @@ def benchmark_results(split, args):
 
     kill_data_processes(data_queue, data_processes)
     cur_dir = os.getcwd()
-    subprocess.call("cd %s; zip -r submission.zip *; cd %s" % (args.odir + '/benchmark', cur_dir),
-                     shell=True)
+    cmd = "cd %s; zip -r submission.zip * ; cd %s" % (args.odir + '/benchmark', cur_dir)
+    process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    _, _ = process.communicate()
     print("Submission file has been saved to %s/submission.zip" % (args.odir + '/benchmark'))
+
 
 def samples(split, args, N):
     print("Sampling ...")

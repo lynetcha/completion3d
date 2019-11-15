@@ -40,9 +40,12 @@ def TopNet_create_model(args):
     print('Total number of parameters: {}'.format(args.nparams))
 
 def TopNet_step(args, targets, clouds_data):
-    _, loss, dist1, dist2, emd_cost, outputs = args.sess.run([args.train_op, args.loss, args.dist1, args.dist2, args.emd_cost, args.outputs],
-                                {args.partial: clouds_data[1].transpose((0, 2, 1)),
-                                 args.gt: targets, args.phase: args.training})
+    outs = [args.train_op, args.loss, args.dist1, args.dist2, args.emd_cost, args.outputs]
+    if not args.training:
+        outs = outs[1:]
+    loss, dist1, dist2, emd_cost, outputs = args.sess.run(
+        outs, {args.partial: clouds_data[1].transpose((0, 2, 1)),
+               args.gt: targets, args.phase: args.training})[-5:]
 
     return loss, dist1, dist2, emd_cost, outputs
 
